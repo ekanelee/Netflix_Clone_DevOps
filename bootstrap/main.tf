@@ -95,8 +95,8 @@ resource "aws_iam_role" "github_actions_terraform" {
           }
           StringLike = {
             "token.actions.githubusercontent.com:sub" = [
-              "repo:${var.github_username}/${var.github_repo}:environment:production",
-              "repo:${var.github_username}/${var.github_repo}:ref:refs/heads/${var.github_branch}"
+              "repo:${var.github_username}@*/${var.github_repo}@*:environment:production",
+              "repo:${var.github_username}@*/${var.github_repo}@*:ref:refs/heads/${var.github_branch}"
             ]
           }
         }
