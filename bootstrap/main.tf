@@ -150,3 +150,45 @@ resource "aws_iam_role_policy_attachment" "power_user" {
   role       = aws_iam_role.github_actions_terraform.name
   policy_arn = "arn:aws:iam::aws:policy/PowerUserAccess"
 }
+
+resource "aws_iam_role_policy" "iam_management"{
+  name = "iam-management-for-terraform"
+  role = aws_iam_role.github_actions_terraform.id
+  policy = jsondecode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid    = "IAMManagement"
+        Effect = "Allow"
+        Action = [
+          "iam:CreateRole",
+          "iam:DeleteRole",
+          "iam:GetRole",
+          "iam:PassRole",
+          "iam:AttachRolePolicy",
+          "iam:DetachRolePolicy",
+          "iam:PutRolePolicy",
+          "iam:DeleteRolePolicy",
+          "iam:GetRolePolicy",
+          "iam:ListRolePolicies",
+          "iam:ListAttachedRolePolicies",
+          "iam:CreatePolicy",
+          "iam:DeletePolicy",
+          "iam:GetPolicy",
+          "iam:GetPolicyVersion",
+          "iam:ListPolicyVersions",
+          "iam:TagRole",
+          "iam:UntagRole",
+          "iam:CreateInstanceProfile",
+          "iam:DeleteInstanceProfile",
+          "iam:GetInstanceProfile",
+          "iam:AddRoleToInstanceProfile",
+          "iam:RemoveRoleFromInstanceProfile",
+          "iam:CreateOpenIDConnectProvider",
+          "iam:GetOpenIDConnectProvider"
+        ]
+        Resource = "*"
+      }
+    ]  
+  })
+}
