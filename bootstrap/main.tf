@@ -154,7 +154,7 @@ resource "aws_iam_role_policy_attachment" "power_user" {
 resource "aws_iam_role_policy" "iam_management"{
   name = "iam-management-for-terraform"
   role = aws_iam_role.github_actions_terraform.id
-  policy = jsondecode({
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
