@@ -75,6 +75,10 @@ resource "aws_security_group" "default-ec2-sg" {
 
   vpc_id = aws_vpc.vpc.id
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   ingress {
     from_port   = 0
     to_port     = 0
