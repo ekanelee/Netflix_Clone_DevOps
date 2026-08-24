@@ -1,5 +1,5 @@
 locals {
-  org     = "aman"
+  org     = "ekane"
   project = "netflix-clone"
   env     = var.env
 }
