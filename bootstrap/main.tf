@@ -146,49 +146,50 @@ resource "aws_iam_role_policy" "terraform_state_access" {
 # Broad infra permissions (tighten later)
 # For now, lets  main Terraform actually create EKS/VPC/etc.
 # ---------------------------
-resource "aws_iam_role_policy_attachment" "power_user" {
+resource "aws_iam_role_policy_attachment" "iam_full_access" {
   role       = aws_iam_role.github_actions_terraform.name
-  policy_arn = "arn:aws:iam::aws:policy/PowerUserAccess"
+  policy_arn = "arn:aws:iam::aws:policy/IAMFullAccess"
 }
 
-resource "aws_iam_role_policy" "iam_management"{
-  name = "iam-management-for-terraform"
-  role = aws_iam_role.github_actions_terraform.id
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid    = "IAMManagement"
-        Effect = "Allow"
-        Action = [
-          "iam:CreateRole",
-          "iam:DeleteRole",
-          "iam:GetRole",
-          "iam:PassRole",
-          "iam:AttachRolePolicy",
-          "iam:DetachRolePolicy",
-          "iam:PutRolePolicy",
-          "iam:DeleteRolePolicy",
-          "iam:GetRolePolicy",
-          "iam:ListRolePolicies",
-          "iam:ListAttachedRolePolicies",
-          "iam:CreatePolicy",
-          "iam:DeletePolicy",
-          "iam:GetPolicy",
-          "iam:GetPolicyVersion",
-          "iam:ListPolicyVersions",
-          "iam:TagRole",
-          "iam:UntagRole",
-          "iam:CreateInstanceProfile",
-          "iam:DeleteInstanceProfile",
-          "iam:GetInstanceProfile",
-          "iam:AddRoleToInstanceProfile",
-          "iam:RemoveRoleFromInstanceProfile",
-          "iam:CreateOpenIDConnectProvider",
-          "iam:GetOpenIDConnectProvider"
-        ]
-        Resource = "*"
-      }
-    ]  
-  })
-}
+# resource "aws_iam_role_policy" "iam_management"{
+#   name = "iam-management-for-terraform"
+#   role = aws_iam_role.github_actions_terraform.id
+#   policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Sid    = "IAMManagement"
+#         Effect = "Allow"
+#         Action = [
+#           "iam:CreateRole",
+#           "iam:DeleteRole",
+#           "iam:GetRole",
+#           "iam:PassRole",
+#           "iam:AttachRolePolicy",
+#           "iam:DetachRolePolicy",
+#           "iam:PutRolePolicy",
+#           "iam:DeleteRolePolicy",
+#           "iam:GetRolePolicy",
+#           "iam:ListRolePolicies",
+#           "iam:ListAttachedRolePolicies",
+#           "iam:CreatePolicy",
+#           "iam:DeletePolicy",
+#           "iam:GetPolicy",
+#           "iam:GetPolicyVersion",
+#           "iam:ListPolicyVersions",
+#           "iam:TagRole",
+#           "iam:UntagRole",
+#           "iam:CreateInstanceProfile",
+#           "iam:DeleteInstanceProfile",
+#           "iam:GetInstanceProfile",
+#           "iam:AddRoleToInstanceProfile",
+#           "iam:RemoveRoleFromInstanceProfile",
+#           "iam:CreateOpenIDConnectProvider",
+#           "iam:GetOpenIDConnectProvider",
+#           "iam:ListInstanceProfilesForRole"
+#         ]
+#         Resource = "*"
+#       }
+#     ]  
+#   })
+# }
