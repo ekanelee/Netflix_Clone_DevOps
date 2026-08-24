@@ -146,6 +146,11 @@ resource "aws_iam_role_policy" "terraform_state_access" {
 # Broad infra permissions (tighten later)
 # For now, lets  main Terraform actually create EKS/VPC/etc.
 # ---------------------------
+resource "aws_iam_role_policy_attachment" "power_user" {
+  role       = aws_iam_role.github_actions_terraform.name
+  policy_arn = "arn:aws:iam::aws:policy/PowerUserAccess"
+}
+
 resource "aws_iam_role_policy_attachment" "iam_full_access" {
   role       = aws_iam_role.github_actions_terraform.name
   policy_arn = "arn:aws:iam::aws:policy/IAMFullAccess"
