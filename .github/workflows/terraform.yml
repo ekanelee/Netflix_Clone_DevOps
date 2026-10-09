@@ -15,7 +15,7 @@ on:
 
 permissions:
   contents: read
-  id-token: write   # needed if using OIDC (recommended, see note below)
+  id-token: write   # needed if using OIDC
 
 jobs:
   infrastructure-setup-using-terraform:
