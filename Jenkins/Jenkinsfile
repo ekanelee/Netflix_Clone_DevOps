@@ -106,7 +106,7 @@ pipeline{
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    dir('Kubernetes') {
+                    dir('kubernetes') {
                         withKubeConfig(credentialsId: 'k8s') {
                             sh 'kubectl apply -f deployment.yml'
                             sh 'kubectl apply -f service.yml'
