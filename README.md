@@ -42,6 +42,10 @@ I'm building this in public in five parts. Part 1 (the cloud foundation) is comp
 **The Jenkins pipeline.** The red rows are the real debugging history: each failure taught me something before the first fully green run.
  
 ![Jenkins stage view](docs/jenkins-stage-view.png)
+
+**Slack canal notifications from builds**
+
+![Slack notifications](docs/slack-canal.png)
  
 **The cluster: 2 nodes, 2 replicas, exposed through a NodePort service.**
  
